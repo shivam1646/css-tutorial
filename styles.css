@@ -1,0 +1,168 @@
+.flexbox-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+    border: 5px double black;
+    padding: 5px;
+}
+.flexbox-container-row {
+    display: flex;
+    /* By default, all items in a flex container will shrink when we shrink
+    browser size but when set to wrap, the items will wrap onto the next line */
+    flex-wrap: wrap;
+    /* We have 2 axis : main and cross.
+    When flex direction is row, main axis is horizontal and cross is vertical
+    When flex direction is column, main axis is vertical and cross is horizontal
+    Default flex direction is row */
+    flex-direction: row;
+    /* The align-content property modifies the behavior of the flex-wrap property.
+    It is similar to align-items, but instead of aligning flex items, it aligns flex
+    lines. There must be multiple lines of items for this property to have any effect. */
+    /* align-content: center; */
+    border: 1px dotted black;
+    height: 100px;
+    width: 300px;
+}
+
+.flexbox-container-column {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: 1px dotted black;
+    height: 150px;
+    width: 100px;
+}
+
+/* aligns content w.r.t the main axis */
+.justify-content-center {
+    justify-content: center;
+}
+.justify-content-start {
+    justify-content: flex-start;
+}
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+/* align content w.r.t the cross axis. Default is stretch : items are 
+stretched to fit the container. Eg: When using with flex direction row
+If 1 item has 300 px, the other items having less height will stretch to 300px  */
+.align-items-center {
+    align-items: center;
+}
+.align-items-start {
+    align-items: flex-start;
+}
+.align-items-end {
+    align-items: flex-end;
+}
+
+.flexbox-item {
+    margin: 5px;
+    width: 50px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.flexbox-item-1 {
+    min-height: 20px;
+}
+
+.flexbox-item-2 {
+    min-height: 30px;
+}
+
+.flexbox-item-3 {
+    min-height: 40px;
+}
+
+.flexbox-item-grow-1 {
+    min-height: 40px;
+    /* when extra space is available, this item will take it up */
+    flex-grow: 1;
+    flex-basis: 0;
+    /* appears 1st in the container irrespective of position in template */
+    order: 1;
+}
+
+.flexbox-item-grow-2 {
+    min-height: 40px;
+    /* when extra space is available, it will be divided among all
+    the items with property flex-grow. This item will take up twice
+    the extra space as compared to item with class flexbox-item-grow-1.
+    Extra space is added to the original dimension. Eg: If width is 50px,
+    new width will be 50px + extra space.*/
+    flex-grow: 2;
+    /* Base dimension is considered 0 while growing or shrinking i.e. 
+    base width 50px will be considered 0 when starting to grow. */
+    flex-basis: 0;
+    /* overrides align-content property of parent container */
+    align-self: center;
+    order: 2;
+}
+
+.flexbox-item-shrink {
+    min-height: 20px;
+    /* when browser size is shrinking, this item will refuse to shrink */
+    flex-shrink: 0;
+    order: 3;
+}
+
+.parent-translate {
+    background-color: aquamarine;
+    width: 250px;
+    height: 250px;
+}
+
+.child-translate {
+    background-color:blueviolet;
+    width: 50%;
+    height: 50%;
+    /* The transition CSS property is a shorthand property for
+    transition-property(can be width, color, transform, etc. Default is all),
+    transition-duration, transition-timing-function, and transition-delay.  */
+    transition: transform 1s cubic-bezier(1, 0.04, 0, 1.21) 1ms;
+}
+
+.parent-translate:hover .child-translate {
+    /* CSS transforms allow you to move, rotate, scale, and skew elements. */
+    transform: translateX(100%);
+}
+
+.parent-animate {
+    background-color: aquamarine;
+    width: 250px;
+    height: 250px;
+}
+
+.child-animate {
+    background-color:blueviolet;
+    width: 50%;
+    height: 50%;
+    /* The animation shorthand CSS property applies an animation between styles.
+    It is a shorthand for animation-name, animation-duration, animation-timing-function,
+    animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, and animation-play-state. */
+    animation: square 1s ease-in 1s infinite alternate;
+}
+
+.parent-animate:hover .child-animate {
+    /* pauses the animation on hover */
+    animation-play-state: paused;
+}
+
+@keyframes square {
+    0% {
+        transform: translateX(0);
+    }
+    33% {
+        transform: translateY(100%);
+    }
+    66% {
+        transform: translateX(100%) translateY(100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
