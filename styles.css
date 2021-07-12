@@ -1,3 +1,13 @@
+/* matches the <html> tag */
+:root {
+    --animate-example-parent-bg: aquamarine;
+    --animate-example-child-bg: blueviolet;
+    --animate-example-parent-width: 250px;
+    --animate-example-parent-height: 250px;
+    --animate-example-child-width: 50%;
+    --animate-example-child-height: 50%;
+}
+
 .flexbox-main {
     display: flex;
     flex-wrap: wrap;
@@ -110,15 +120,16 @@ If 1 item has 300 px, the other items having less height will stretch to 300px  
 }
 
 .parent-translate {
-    background-color: aquamarine;
-    width: 250px;
-    height: 250px;
+    /* assigns variable value, if var is not defined it uses pink */
+    background-color: var(--animate-example-parent-bg, pink);
+    width: var(--animate-example-parent-width);
+    height: var(--animate-example-parent-height);
 }
 
 .child-translate {
-    background-color:blueviolet;
-    width: 50%;
-    height: 50%;
+    background-color: var(--animate-example-child-bg);
+    width: var(--animate-example-child-width);
+    height: var(--animate-example-child-height);
     /* The transition CSS property is a shorthand property for
     transition-property(can be width, color, transform, etc. Default is all),
     transition-duration, transition-timing-function, and transition-delay.  */
@@ -131,15 +142,15 @@ If 1 item has 300 px, the other items having less height will stretch to 300px  
 }
 
 .parent-animate {
-    background-color: aquamarine;
-    width: 250px;
-    height: 250px;
+    background-color: var(--animate-example-parent-bg);
+    width: var(--animate-example-parent-width);
+    height: var(--animate-example-parent-height);
 }
 
 .child-animate {
-    background-color:blueviolet;
-    width: 50%;
-    height: 50%;
+    background-color: var(--animate-example-child-bg);
+    width: var(--animate-example-child-width);
+    height: var(--animate-example-child-height);
     /* The animation shorthand CSS property applies an animation between styles.
     It is a shorthand for animation-name, animation-duration, animation-timing-function,
     animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, and animation-play-state. */
@@ -164,5 +175,36 @@ If 1 item has 300 px, the other items having less height will stretch to 300px  
     100% {
         transform: translateX(100%);
     }
+}
+
+/* Compared to display: inline, the major difference is that display: inline-block allows to set a width and height on the element.
+Also, with display: inline-block, the top and bottom margins/paddings are respected, but with display: inline they are not.
+Compared to display: block, the major difference is that display: inline-block does not add a line-break after the element,
+so the element can sit next to other elements. */
+span.a {
+    display: inline; /* the default for span */
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid blue;  
+    background-color: yellow; 
+}
+  
+span.b {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
+}
+  
+span.c {
+    display: block;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
 }
 
